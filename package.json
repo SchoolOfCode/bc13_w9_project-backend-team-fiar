@@ -1,6 +1,7 @@
 {
   "name": "bc13_w9_project-backend-team-fiar",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -26,6 +27,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
+    "pg": "^8.8.0",
     "uuid": "^9.0.0"
   }
 }
