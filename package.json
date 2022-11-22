@@ -1,12 +1,13 @@
 {
   "name": "bc13_w9_project-backend-team-fiar",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -r dotenv/config app.js",
-    "dev": "nodemon -r dotenv/config app.js"
+    "start": "node -r dotenv/config server.js",
+    "dev": "nodemon -r dotenv/config server.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
+    "pg": "^8.8.0",
     "uuid": "^9.0.0"
   }
 }
