@@ -1,14 +1,14 @@
 import express from 'express'
 import morgan from 'morgan'
 import { bootcampersRouter } from './routes/bootcampers.js'
-import posts from './routes/posts.js'
+import { postsRouter } from './routes/posts.js'
 // import userComments from './routes/userComments.js'
 const app = express()
 
 app.use(morgan('dev'))
 app.use(express.json())
 app.use('/api/bootcampers', bootcampersRouter)
-app.use('/api/posts', posts)
+app.use('/api/posts', postsRouter)
 // app.use('/api/userComments', userComments)
 
 app.use(function (req, res, next) {
