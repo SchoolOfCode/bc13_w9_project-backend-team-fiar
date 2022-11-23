@@ -12,11 +12,12 @@ post_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 bootcamper_id INT REFERENCES bootcampers(id),
 contents VARCHAR(800),
 date_posted DATE,
-morning BOOLEAN  
+morning BOOLEAN,
+week INT
 );
 
 INSERT INTO posts (bootcamper_id, contents, date_posted, morning)
-VALUES (1, 'CSS is the best', '2022-11-22', true), (2, 'I loooove SQL', '2022-11-22', false);
+VALUES (1, 'CSS is the best', '2022-11-22', true, 1), (2, 'I loooove SQL', '2022-11-22', false, 5);
 
 CREATE TABLE user_comments (
 comment_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
