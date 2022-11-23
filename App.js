@@ -3,9 +3,11 @@ import morgan from 'morgan'
 import { bootcampersRouter } from './routes/bootcampers.js'
 import { postsRouter } from './routes/posts.js'
 import { commentsRouter } from './routes/userComments.js'
+import cors from 'cors'
 const app = express()
 
 app.use(morgan('dev'))
+app.use(cors())
 app.use(express.json())
 app.use('/api/bootcampers', bootcampersRouter)
 app.use('/api/posts', postsRouter)
