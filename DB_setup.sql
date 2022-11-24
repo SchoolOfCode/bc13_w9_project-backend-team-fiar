@@ -28,4 +28,4 @@ date_posted DATE
 );
 
 INSERT INTO user_comments (bootcamper_id, post_id, contents, date_posted)
-VALUES (5, 1, 'Yeah i love CSS too', '2022-11-22'), (6, 2, 'Disagree, I hate CQL', '2022-11-22')
+VALUES (5, 1, 'Yeah i love CSS too', '2022-11-22'), (6, 2, 'Disagree, I hate CQL', '2022-11-22');

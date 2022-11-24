@@ -1,98 +1,112 @@
-import request from "supertest";
-import app from "../App.js";
-import { expect, test } from "@jest/globals";
-import { pool } from "../db/index.js";
+import request from 'supertest'
+import app from '../App.js'
+import { expect, test } from '@jest/globals'
+import { pool } from '../db/index.js'
+import { resetBootcampersTable } from '../db/helpersBootcampers'
 
-describe("GET api/bootcampers", function () {
-  it("responds with array of bootcampers", async function () {
-    const response = await request(app).get("/api/bootcampers");
-    expect(response.status).toEqual(200);
+// beforeEach(() => {
+//   return resetBootcampersTable()
+// })
+
+describe('GET api/bootcampers', function () {
+  it('responds with array of bootcampers', async function () {
+    const response = await request(app).get('/api/bootcampers')
+    expect(response.status).toEqual(200)
     expect(response.body).toStrictEqual({
       success: true,
-      payload: expect.any(Array),
-    });
+      payload: expect.any(Array)
+    })
     for (let i = 0; i < response.body.payload.length; i++) {
-      const postObject = response.body.payload[i];
+      const postObject = response.body.payload[i]
       expect(postObject).toStrictEqual({
         id: expect.any(Number),
         username: expect.any(String),
-        is_coach: expect.any(Boolean),
-      });
+        is_coach: expect.any(Boolean)
+      })
     }
-  });
-});
+  })
+})
 
-describe("GET api/bootcampers", function () {
-  it("responds with array of bootcampers at an ID", async function () {
-    const response = await request(app).get("/api/bootcampers/2");
-    expect(response.status).toEqual(200);
+describe('GET api/bootcampers', function () {
+  it('responds with array of bootcampers at an ID', async function () {
+    const response = await request(app).get('/api/bootcampers/2')
+    expect(response.status).toEqual(200)
     expect(response.body).toStrictEqual({
       success: true,
-      payload: expect.any(Object),
-    });
+      payload: expect.any(Object)
+    })
     for (let i = 0; i < response.body.payload.length; i++) {
-      const postObject = response.body.payload[i];
+      const postObject = response.body.payload[i]
       expect(postObject).toStrictEqual({
         id: 2,
         username: expect.any(String),
-        is_coach: expect.any(Boolean),
-      });
+        is_coach: expect.any(Boolean)
+      })
     }
-  });
-});
+  })
+})
 
-describe("POST api/bootcampers", function () {
-  it("Adds a bootcamper to the bootcampers table", async function () {
-    const response = await request(app).post("/api/bootcampers").send({
-      username: "Jill",
-      is_coach: false,
-    });
-    expect(response.status).toEqual(201);
+describe('POST api/bootcampers', function () {
+  beforeEach(() => {
+    return resetBootcampersTable()
+  })
+  it('Adds a bootcamper to the bootcampers table', async function () {
+    const response = await request(app).post('/api/bootcampers').send({
+      username: 'Jill',
+      is_coach: false
+    })
+    expect(response.status).toEqual(201)
     expect(response.body).toEqual({
       success: true,
       payload: {
         id: expect.any(Number),
-        username: "Jill",
-        is_coach: false,
-      },
-    });
-  });
-});
+        username: 'Jill',
+        is_coach: false
+      }
+    })
+  })
+})
 
-describe("PATCH api/bootcampers", function () {
-  it("Edits a bootcamper on the bootcampers table", async function () {
-    const response = await request(app).patch("/api/bootcampers/9").send({
-      id: 9,
-      username: "Janine",
-      is_coach: false,
-    });
-    expect(response.status).toEqual(200);
+describe('PATCH api/bootcampers', function () {
+  beforeEach(() => {
+    return resetBootcampersTable()
+  })
+  it('Edits a bootcamper on the bootcampers table', async function () {
+    const response = await request(app).patch('/api/bootcampers/1').send({
+      id: 1,
+      username: 'flavia',
+      is_coach: true
+    })
+    expect(response.status).toEqual(200)
     expect(response.body).toEqual({
       success: true,
       payload: {
         id: expect.any(Number),
-        username: "Janine",
-        is_coach: false,
-      },
-    });
-  });
-});
+        username: 'flavia',
+        is_coach: true
+      }
+    })
+  })
+})
 
-describe("DELETE api/bootcampers/{id}", function () {
-  it("responds with the deleted bootcamper", async function () {
-    const response = await request(app).delete("/api/bootcampers/9");
-    expect(response.status).toEqual(200);
+describe('DELETE api/bootcampers/{id}', function () {
+  beforeEach(() => {
+    return resetBootcampersTable()
+  })
+  it('responds with the deleted bootcamper', async function () {
+    const response = await request(app).delete('/api/bootcampers/5')
+    expect(response.status).toEqual(200)
     expect(response.body).toStrictEqual({
       success: true,
       payload: {
-        id: 9,
-        username: "Janine",
-        is_coach: false,
-      },
-    });
-  });
-});
+        id: 5,
+        username: 'keira',
+        is_coach: false
+      }
+    })
+  })
+})
 //
 afterAll(() => {
-  pool.end();
-});
+  pool.end()
+})
