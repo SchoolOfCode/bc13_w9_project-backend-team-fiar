@@ -54,7 +54,7 @@ describe("POST api/comments", function () {
       bootcamper_id: 2,
       post_id: 2,
       contents: "I know a cool React Hook for this!",
-      date_posted: "2022-11-22T03:00:00.000Z",
+      date_posted: "2022-11-22T00:00:00.000Z",
     });
     expect(response.status).toEqual(201);
     expect(response.body).toEqual({
@@ -64,7 +64,7 @@ describe("POST api/comments", function () {
         bootcamper_id: 2,
         post_id: 2,
         contents: "I know a cool React Hook for this!",
-        date_posted: "2022-11-22T03:00:00.000Z",
+        date_posted: "2022-11-22T00:00:00.000Z",
       },
     });
   });

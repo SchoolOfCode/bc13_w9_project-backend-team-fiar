@@ -41,8 +41,6 @@ describe("GET api/bootcampers", function () {
   });
 });
 
-still need to work on the ones below :D
-
 describe("POST api/bootcampers", function () {
   it("Adds a bootcamper to the bootcampers table", async function () {
     const response = await request(app).post("/api/bootcampers").send({
