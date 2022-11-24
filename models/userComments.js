@@ -10,7 +10,10 @@ export async function getAllComments () {
 }
 
 export async function getCommentByPostID (id) {
-  const data = await pool.query('SELECT * FROM user_comments WHERE post_id = $1', [
+  const data = await pool.query(`SELECT * FROM user_comments 
+        INNER JOIN bootcampers
+        ON bootcampers.id = user_comments.bootcamper_id
+        WHERE post_id = $1`, [
     id
   ])
   return data.rows
