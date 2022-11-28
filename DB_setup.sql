@@ -11,12 +11,13 @@ CREATE TABLE posts (
 post_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 bootcamper_id INT REFERENCES bootcampers(id),
 contents VARCHAR(800),
-date_posted DATE,
-morning BOOLEAN  
+morning BOOLEAN,
+week INT,
+day_posted VARCHAR(10)
 );
 
-INSERT INTO posts (bootcamper_id, contents, date_posted, morning)
-VALUES (1, 'CSS is the best', '2022-11-22', true), (2, 'I loooove SQL', '2022-11-22', false);
+INSERT INTO posts (bootcamper_id, contents, morning, week, day_posted)
+VALUES (1, 'CSS is the best', true, 1, 'mon'), (2, 'I loooove SQL', false, 5, 'tues');
 
 CREATE TABLE user_comments (
 comment_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -28,4 +29,3 @@ date_posted DATE
 
 INSERT INTO user_comments (bootcamper_id, post_id, contents, date_posted)
 VALUES (5, 1, 'Yeah i love CSS too', '2022-11-22'), (6, 2, 'Disagree, I hate CQL', '2022-11-22')
-
