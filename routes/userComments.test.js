@@ -2,7 +2,8 @@ import request from 'supertest'
 import app from '../App.js'
 import { expect, test } from '@jest/globals'
 import { pool } from '../db/index.js'
-import { resetCommentsTable } from '../db/helpersComments'
+//import { resetCommentsTable } from '../db/helpersComments'
+import { resetAllTables } from '../db/helpersResetAllTables'
 
 // beforeEach(() => {
 //   return resetCommentsTable()
@@ -55,7 +56,7 @@ describe('GET api/comments/some_id', function () {
 
 describe('POST api/comments', function () {
   beforeEach(() => {
-    return resetCommentsTable()
+    return resetAllTables()
   })
   it('Adds a comment to the user_comments table', async function () {
     const response = await request(app).post('/api/comments').send({
@@ -80,7 +81,7 @@ describe('POST api/comments', function () {
 
 describe('PATCH api/comments', function () {
   beforeEach(() => {
-    return resetCommentsTable()
+    return resetAllTables()
   })
   it('Edits a comment on the user_comments table', async function () {
     const response = await request(app).patch('/api/comments/2').send({
@@ -107,7 +108,7 @@ describe('PATCH api/comments', function () {
 
 describe('DELETE api/comments/{id}', function () {
   beforeEach(() => {
-    return resetCommentsTable()
+    return resetAllTables()
   })
   it('responds with the deleted comment', async function () {
     const response = await request(app).delete('/api/comments/1')

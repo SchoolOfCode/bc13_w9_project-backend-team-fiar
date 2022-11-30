@@ -2,7 +2,8 @@ import request from 'supertest'
 import app from '../App.js'
 import { expect, test } from '@jest/globals'
 import { pool } from '../db/index.js'
-import { resetPostsTable } from '../db/helpersPosts'
+//import { resetPostsTable } from '../db/helpersPosts'
+import { resetAllTables } from '../db/helpersResetAllTables'
 
 // beforeEach(() => {
 //   return resetPostsTable()
@@ -64,7 +65,7 @@ describe('GET api/posts?week=1', function () {
 
 describe('GET api/posts?content=css', function () {
   beforeEach(() => {
-    return resetPostsTable()
+    return resetAllTables()
   })
   it('responds with array of posts that contains css', async function () {
     const response = await request(app).get('/api/posts?content=css')
@@ -92,7 +93,7 @@ describe('GET api/posts?content=css', function () {
 
 describe('POST api/posts', function () {
   beforeEach(() => {
-    return resetPostsTable()
+    return resetAllTables()
   })
   it('Adds a post to the posts table', async function () {
     const response = await request(app).post('/api/posts').send({
@@ -119,7 +120,7 @@ describe('POST api/posts', function () {
 
 describe('PATCH api/posts', function () {
   beforeEach(() => {
-    return resetPostsTable()
+    return resetAllTables()
   })
   it('Edits a post on the posts table', async function () {
     const response = await request(app).patch('/api/posts/5').send({
@@ -147,7 +148,7 @@ describe('PATCH api/posts', function () {
 
 describe('DELETE api/posts/{id}', function () {
   beforeEach(() => {
-    return resetPostsTable()
+    return resetAllTables()
   })
   it('responds with the deleted post', async function () {
     const response = await request(app).delete('/api/posts/10')

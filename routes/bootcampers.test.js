@@ -2,7 +2,8 @@ import request from 'supertest'
 import app from '../App.js'
 import { expect, test } from '@jest/globals'
 import { pool } from '../db/index.js'
-import { resetBootcampersTable } from '../db/helpersBootcampers'
+//import { resetBootcampersTable } from '../db/helpersBootcampers'
+import { resetAllTables } from '../db/helpersResetAllTables'
 
 // beforeEach(() => {
 //   return resetBootcampersTable()
@@ -48,7 +49,7 @@ describe('GET api/bootcampers', function () {
 
 describe('POST api/bootcampers', function () {
   beforeEach(() => {
-    return resetBootcampersTable()
+    return resetAllTables()
   })
   it('Adds a bootcamper to the bootcampers table', async function () {
     const response = await request(app).post('/api/bootcampers').send({
@@ -69,7 +70,7 @@ describe('POST api/bootcampers', function () {
 
 describe('PATCH api/bootcampers', function () {
   beforeEach(() => {
-    return resetBootcampersTable()
+    return resetAllTables()
   })
   it('Edits a bootcamper on the bootcampers table', async function () {
     const response = await request(app).patch('/api/bootcampers/1').send({
@@ -91,7 +92,7 @@ describe('PATCH api/bootcampers', function () {
 
 describe('DELETE api/bootcampers/{id}', function () {
   beforeEach(() => {
-    return resetBootcampersTable()
+    return resetAllTables()
   })
   it('responds with the deleted bootcamper', async function () {
     const response = await request(app).delete('/api/bootcampers/5')
